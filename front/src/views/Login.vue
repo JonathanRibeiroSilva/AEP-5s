@@ -59,12 +59,6 @@
                     </button>
                 </form>
 
-                <div class="login-info">
-                    <h3>Usuário de Teste:</h3>
-                    <p><strong>Email:</strong> admin@maringa.com</p>
-                    <p><strong>Senha:</strong> admin123</p>
-                </div>
-
                 <div class="login-footer">
                     <p>
                         Não tem uma conta?
@@ -162,15 +156,18 @@ export default {
                 localStorage.setItem('user', JSON.stringify(response.user));
 
                 success.value = 'Login realizado com sucesso!';
-
-                setTimeout(() => {
+                
+                // Verifica se o token foi realmente salvo antes de redirecionar
+                const token = localStorage.getItem('token');
+                if (token) {
                     if (response.user.role === 'admin') {
                         router.push('/dashboard');
                     } else {
                         router.push('/');
                     }
-                    window.location.reload();
-                }, 1000);
+                } else {
+                    error.value = 'Erro ao salvar credenciais';
+                }
             } catch (err) {
                 error.value =
                     err.response?.data?.message || 'Credenciais inválidas';
@@ -345,26 +342,6 @@ export default {
     display: flex;
     align-items: center;
     gap: 0.5rem;
-}
-
-.login-info {
-    background: #f8f9fa;
-    padding: 1.5rem;
-    border-radius: 10px;
-    margin-bottom: 1rem;
-    text-align: center;
-}
-
-.login-info h3 {
-    color: #2c5aa0;
-    margin-bottom: 1rem;
-    font-size: 1.1rem;
-}
-
-.login-info p {
-    margin-bottom: 0.5rem;
-    color: #666;
-    font-size: 0.9rem;
 }
 
 .login-footer {
