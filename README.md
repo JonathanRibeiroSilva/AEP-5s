@@ -242,8 +242,3 @@ A aplicação gera logs detalhados incluindo:
 -   Erros e exceções
 
 ---
-
-**Desenvolvido com ❤️ para facilitar a vida dos cidadãos de Maringá!** 🏙️
-"# AEP-5s"  
-"# AEP-5s"  
-"# AEP-5s" 
